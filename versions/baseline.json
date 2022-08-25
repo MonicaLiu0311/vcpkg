@@ -3709,7 +3709,7 @@
       "port-version": 1
     },
     "libharu": {
-      "baseline": "2.4.0-rc1",
+      "baseline": "2.4.0",
       "port-version": 0
     },
     "libhdfs3": {
