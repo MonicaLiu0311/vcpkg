@@ -5,17 +5,12 @@ vcpkg_from_github(
     SHA512 6d462bb004e5b7cb181729811ca9810202f071cb6e57117c37fd96f38471e52113532eced367261581aa99a5083e3bedca5c5673f5d7374fea0d6035d4926a41
     HEAD_REF master
     PATCHES
+        fix-include-path.patch
         export-targets.patch
-		fix-include-path.patch
 )
 
-if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
-  set(VCPKG_BUILD_SHARED_LIBS ON)
-  set(VCPKG_BUILD_STATIC_LIBS OFF)
-else()
-  set(VCPKG_BUILD_SHARED_LIBS OFF)
-  set(VCPKG_BUILD_STATIC_LIBS ON)
-endif()
+string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "static" VCPKG_BUILD_STATIC_LIBS)
+string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "dynamic" VCPKG_BUILD_SHARED_LIBS)
 
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
